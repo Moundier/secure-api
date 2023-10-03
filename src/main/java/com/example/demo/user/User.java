@@ -35,6 +35,7 @@ public class User implements UserDetails {
 
     @NonNull
     private String email;
+    
     @NonNull
     private String password;
 
