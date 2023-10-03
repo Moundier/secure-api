@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.demo.auth.AuthService;
-import com.example.demo.auth.AuthRoute.RegisterRequest;
+import com.example.demo.auth.AuthRoute.RegisterDTO;
 import com.example.demo.user.Role;
 import com.example.demo.user.User;
 
@@ -29,18 +29,18 @@ public class Main {
 		return args -> {
             
 			List<User> USERS = List.of(
-				new User(null, "nami", "namizo", "nami@gmail.com", "1234", Role.USER),
-				new User(null, "usop", "sogeking", "usop@gmail.com", "1234", Role.ADMIN)
+				new User(null, "nami", "namizo", "nami@gmail.com", "1234", null),
+				new User(null, "usop", "sogeking", "usop@gmail.com", "1234", null)
 			);
 
 			List<User> ADMINS = List.of(
-				new User(null, "zoro", "roronoa", "zoro@gmail.com", "1234", Role.USER),
-				new User(null, "luff", "monkey", "luff@gmail.com", "1234", Role.ADMIN)
+				new User(null, "zoro", "roronoa", "zoro@gmail.com", "1234", null),
+				new User(null, "luff", "monkey", "luff@gmail.com", "1234", null)
 			);
 
 			for (User user : USERS) {
 
-				RegisterRequest response = new RegisterRequest(
+				RegisterDTO response = new RegisterDTO(
 					user.getFirstname(),
 					user.getLastname(), 
 					user.getEmail(),
@@ -52,7 +52,7 @@ public class Main {
 
 			for (User admin : ADMINS) {
 
-				RegisterRequest response = new RegisterRequest(
+				RegisterDTO response = new RegisterDTO(
 					admin.getFirstname(), 
 					admin.getLastname(), 
 					admin.getEmail(),
