@@ -1,19 +1,22 @@
 package com.example.demo.auth;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.auth.AuthRoute.AuthRequest;
-import com.example.demo.auth.AuthRoute.RegisterRequest;
+import com.example.demo.auth.AuthRoute.RegisterDTO;
 import com.example.demo.user.Role;
 import com.example.demo.user.User;
 import com.example.demo.user.UserRepo;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.example.demo.auth.AuthRoute.AuthResponse;
+import static com.example.demo.auth.AuthRoute.AuthDTO;
+import static com.example.demo.auth.AuthRoute.ErrorDTO;
+import static com.example.demo.auth.AuthRoute.TokenDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +27,15 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     
-    public AuthResponse register(RegisterRequest request) {
+    public ResponseEntity<?> register(RegisterDTO request) {
         
+        User alreadyUser = userRepo.findByEmail(request.email());
+
+        if (alreadyUser != null) {
+            final String message = "Email address is already in use";
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorDTO(message));
+        }
+
         var user = User.builder()
             .firstname(request.firstname())
             .lastname(request.lastname())
@@ -38,12 +48,19 @@ public class AuthService {
 
         var token = jwtService.generateToken(user);
 
-        return new AuthResponse(token);
+        return ResponseEntity.status(HttpStatus.OK).body(new TokenDTO(token));
     }
 
-    public AuthResponse authenticate(AuthRequest request) {
+    public ResponseEntity<?> authenticate(AuthDTO request) {
+
+        var user = userRepo.findByEmail(request.email());
         
-        // Authentication for Login
+        if (user == null) {
+            final String message = "User is not registered. Please sing up";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorDTO(message));
+        }
+
+        // Get User Authenticated
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 request.email(),
@@ -51,15 +68,13 @@ public class AuthService {
             )
         );
 
-        var user = userRepo.findByEmail(request.email());
-
         var token = jwtService.generateToken(user);
 
-        return new AuthResponse(token);
+        return ResponseEntity.status(HttpStatus.OK).body(new TokenDTO(token));
     }
 
     // This Creates an Admin
-    public AuthResponse authorize(RegisterRequest request) {
+    public ResponseEntity<?> authorize(RegisterDTO request) {
 
         var user = User.builder()
             .firstname(request.firstname())
@@ -73,7 +88,7 @@ public class AuthService {
 
         var token = jwtService.generateToken(user);
 
-        return new AuthResponse(token);
+        return ResponseEntity.status(HttpStatus.OK).body(new TokenDTO(token));
     }
     
 }
