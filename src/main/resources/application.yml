@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+spring:
+  # refers to database server or postgres user 
+  datasource:
+    username: postgres
+    password: 123456
+
+    url: jdbc:postgresql://localhost:5432/db-full-secure # pgAdmin4 python venv
+    # url: jdbc:postgresql://silly.db.elephantsql.com:5432/tqcszcxm?user=tqcszcxm&password=SXgJrMstmZieuYMBUOLEdeAuY47wC1tC  # Elephant
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-plataform: org.hibernate.dialect.PostgreSQLDialect
