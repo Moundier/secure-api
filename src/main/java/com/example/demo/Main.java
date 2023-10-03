@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.demo.auth.AuthService;
 import com.example.demo.auth.AuthRoute.RegisterDTO;
-import com.example.demo.user.Role;
 import com.example.demo.user.User;
 
 @SpringBootApplication
