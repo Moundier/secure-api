@@ -16,36 +16,39 @@ public class AuthRoute {
     private final AuthService authService;
     
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.register(request));
+    public ResponseEntity<?> register(@RequestBody RegisterDTO request) {
+        return authService.register(request);
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest request) {
-        return ResponseEntity.ok(authService.authenticate(request));
+    public ResponseEntity<?> authenticate(@RequestBody AuthDTO request) {
+        return authService.authenticate(request);
     }
 
     @PostMapping("/authorize")
-    public ResponseEntity<AuthResponse> authorize(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.authorize(request));
+    public ResponseEntity<?> authorize(@RequestBody RegisterDTO request) {
+        return authService.authorize(request);
     }
 
-    // Todo: Make the following records
+    // Todo: make the following private
 
-    public static record AuthRequest(
+    public static record AuthDTO(
         String email, 
         String password
     ) { }
-
-    public static record AuthResponse(
-        String token
-    ) { }
     
-    public static record RegisterRequest(
+    public static record RegisterDTO(
         String firstname,
         String lastname,
         String email,
         String password
     ) {  }
-    
+
+    public static record ErrorDTO (
+        String message
+    ) { }
+
+    public static record TokenDTO(
+        String token
+    ) { }
 }
