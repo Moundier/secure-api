@@ -28,6 +28,8 @@ The following guides illustrate how to use some features concretely:
 - [x] Design and implement RESTful API endpoints.
 - [x] Implement Security authentication and authorization.
 - [x] Implement Jwt Bearer.
+
+Future
 - [ ] Implement Jwt Refresh Token.
 - [ ] Implement Logout.
 
@@ -45,5 +47,53 @@ The following guides illustrate how to use some features concretely:
 - [ ] Only Admin can Modify Course aspects
 - [ ] Add Spring Validation Annotations
 - [ ] How to implement Cookie 
+
+
+```json
+
+{
+  "course": {
+    "imageURL": "course_image_url_here",
+    "title": "Course Title",
+    "details": "Course Details",
+    "duration": 10,
+    "level": "Beginner",
+    "courseOwner": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com"
+    },
+    "chapters": [
+      {
+        "title": "Chapter 1",
+        "description": "Chapter 1 Description",
+        "lessons": [
+          {
+            "title": "Lesson 1",
+            "description": "Lesson 1 Description",
+            "isLessonComplete": false
+          },
+          {
+            "title": "Lesson 2",
+            "description": "Lesson 2 Description",
+            "isLessonComplete": false
+          }
+        ]
+      },
+      {
+        "title": "Chapter 2",
+        "description": "Chapter 2 Description",
+        "lessons": [
+          {
+            "title": "Lesson 1",
+            "description": "Lesson 1 Description",
+            "isLessonComplete": false
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
 

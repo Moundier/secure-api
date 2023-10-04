@@ -1,18 +1,13 @@
 package com.example.demo.course;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.example.demo.chapters.Chapter;
-import com.example.demo.user.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -37,20 +32,7 @@ public class Course {
     private Integer duration;
     private String level;
 
-    @Builder.Default
-    @ManyToMany
-    @JoinTable(
-        name = "tbl_course_user",
-        joinColumns = @JoinColumn(name = "course_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<User> subscribers = new HashSet<>();
-
-    @ManyToOne
-    private User courseOwner;
-
-    @Builder.Default
-    @OneToMany(mappedBy = "course")
-    private Set<Chapter> chapters = new HashSet<>();
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Chapter> chapters;
 
 }
