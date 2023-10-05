@@ -8,9 +8,12 @@ import com.example.demo.chapters.Chapter;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +37,15 @@ public class Course {
     private Date duration;
     private String level;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "tbl_course_chapter",
+        joinColumns = {
+            @JoinColumn(name = "course_id", referencedColumnName = "id")
+        }, 
+        inverseJoinColumns = {
+            @JoinColumn(name = "chapter_id", referencedColumnName = "id")
+        }
+    )
     private Set<Chapter> chapters;
 
 }
