@@ -1,5 +1,7 @@
 package com.example.demo.course;
 
+import java.util.Set;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.chapters.Chapter;
+import com.example.demo.lesson.Lesson;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,8 +26,8 @@ public class CourseRoute {
     private final CourseService courseService;
 
     @PostMapping("/save")
-    public ResponseEntity<Course> save(@RequestBody Course course) {
-        return new ResponseEntity<Course>(courseService.save(course), HttpStatus.CREATED);
+    public ResponseEntity<CourseDTO> save(@RequestBody CourseDTO courseDTO) {
+        return new ResponseEntity<CourseDTO>(courseService.save(courseDTO), HttpStatus.CREATED);
     }
     
     @GetMapping("/{id}")
@@ -35,6 +40,11 @@ public class CourseRoute {
             new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping
+    public ResponseEntity<?> findAll() {
+        return new ResponseEntity<>(courseService.findAll(), HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> edit(@PathVariable Integer id, @RequestBody Course course) {
         return new ResponseEntity<>(courseService.edit(id, course), HttpStatus.OK);
@@ -45,4 +55,17 @@ public class CourseRoute {
         courseService.wipe(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
+
+    // Data Transfer Object
+    public record CourseDTO(
+        Course course, 
+        Set<ChapterDTO> chapters
+    ) { }
+    
+    public record ChapterDTO(
+        Chapter chapter, 
+        Set<LessonDTO> lessons
+    ) { }
+
+    public record LessonDTO(Lesson lesson) {}
 }

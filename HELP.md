@@ -96,4 +96,18 @@ Future
 }
 ```
 
+```sql
+
+select * from tbl_course;
+select * from tbl_chapter;
+select * from tbl_lesson;
+
+SELECT course.id, chapter.id, lesson.id FROM tbl_course AS course
+LEFT JOIN tbl_chapter AS chapter ON course.id = chapter.course_id
+LEFT JOIN tbl_lesson AS lesson ON chapter.id = lesson.chapter_id
+WHERE course.id = 1;
+
+SELECT * FROM tbl_course where tbl_course.id = 2;
+```
+
 

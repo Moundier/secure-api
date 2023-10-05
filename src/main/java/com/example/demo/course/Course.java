@@ -1,5 +1,7 @@
 package com.example.demo.course;
 
+import java.sql.Date;
+
 import java.util.Set;
 
 import com.example.demo.chapters.Chapter;
@@ -29,7 +31,7 @@ public class Course {
     private String imageURL;
     private String title;
     private String details;
-    private Integer duration;
+    private Date duration;
     private String level;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
