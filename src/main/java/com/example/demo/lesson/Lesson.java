@@ -1,14 +1,15 @@
 package com.example.demo.lesson;
 
 import java.io.File;
+import java.util.Set;
 
 import com.example.demo.chapters.Chapter;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +32,6 @@ public class Lesson {
     private Boolean isLessonComplete;
     private File lessonReadme;
 
-    @ManyToOne
-    @JoinColumn(name = "chapter_id")
-    private Chapter chapter;
+    @ManyToMany(mappedBy = "lessons", fetch = FetchType.LAZY)
+    private Set<Chapter> chapters;
 }

@@ -10,8 +10,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,11 +32,18 @@ public class Chapter {
     private Integer id;
     private String title;
     private String description;
-
     
     @ManyToMany(mappedBy = "chapters", fetch = FetchType.LAZY)
     private Set<Course> courses;
 
-    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "tbl_course_chapter",
+        joinColumns = {
+            @JoinColumn(name = "course_id", referencedColumnName = "id")
+        }, 
+        inverseJoinColumns = {
+            @JoinColumn(name = "chapter_id", referencedColumnName = "id")
+        }
+    )
     private Set<Lesson> lessons;
 }
