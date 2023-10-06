@@ -46,7 +46,7 @@ public class Main {
 					user.getPassword()
 				);
 
-				authService.register(response);
+				authService.signup(response);
 			}
 
 			for (User admin : ADMINS) {
