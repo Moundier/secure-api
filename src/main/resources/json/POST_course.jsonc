@@ -1,0 +1,38 @@
+// localhost:9090/course/save
+
+{
+    "title": "Course Title",
+    "imageURL": "http://example.com/course-image.jpg",
+    "details": "Course details go here",
+    "duration": "2023-10-12", // Date format (YYYY-MM-DD)
+    "level": "Intermediate",
+    "chapters": [
+      {
+        "title": "Chapter 1 Title",
+        "description": "Chapter 1 description goes here",
+        "lessons": [
+          {
+            "title": "Lesson 1.1 Title",
+            "description": "Lesson 1.1 description goes here",
+            "isLessonComplete": false
+          },
+          {
+            "title": "Lesson 1.2 Title",
+            "description": "Lesson 1.2 description goes here",
+            "isLessonComplete": true
+          }
+        ]
+      },
+      {
+        "title": "Chapter 2 Title",
+        "description": "Chapter 2 description goes here",
+        "lessons": [
+          {
+            "title": "Lesson 2.1 Title",
+            "description": "Lesson 2.1 description goes here",
+            "isLessonComplete": false
+          }
+        ]
+      }
+    ]
+}

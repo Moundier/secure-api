@@ -1,0 +1,8 @@
+// localhost:9090/auth/authorize
+
+{
+    "firstname":"adm",
+    "lastname": "admin",
+    "email": "adm@gmail.com",
+    "password":"1234"
+}
