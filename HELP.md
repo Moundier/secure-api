@@ -36,7 +36,6 @@ Future
 ## Todo
 - [ ] Edit Course Passing Chapters and Sections
 - [ ] Dockerfile Dockercompose
-- [ ] Flyway
 - [ ] Link Users to Courses
 - [ ] Prepare each Postman Request
     * User -> Access Course
@@ -46,69 +45,6 @@ Future
 
 - [ ] Only Admin can Modify Course aspects
 - [ ] Add Spring Validation Annotations
-- [ ] How to implement Cookie 
 
-- [ ] Create table chapter Lesson
 
 ```json
-
-{
-  "course": {
-    "imageURL": "course_image_url_here",
-    "title": "Course Title",
-    "details": "Course Details",
-    "duration": 10,
-    "level": "Beginner",
-    "courseOwner": {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john.doe@example.com"
-    },
-    "chapters": [
-      {
-        "title": "Chapter 1",
-        "description": "Chapter 1 Description",
-        "lessons": [
-          {
-            "title": "Lesson 1",
-            "description": "Lesson 1 Description",
-            "isLessonComplete": false
-          },
-          {
-            "title": "Lesson 2",
-            "description": "Lesson 2 Description",
-            "isLessonComplete": false
-          }
-        ]
-      },
-      {
-        "title": "Chapter 2",
-        "description": "Chapter 2 Description",
-        "lessons": [
-          {
-            "title": "Lesson 1",
-            "description": "Lesson 1 Description",
-            "isLessonComplete": false
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-```sql
-
-select * from tbl_course;
-select * from tbl_chapter;
-select * from tbl_lesson;
-
-SELECT course.id, chapter.id, lesson.id FROM tbl_course AS course
-LEFT JOIN tbl_chapter AS chapter ON course.id = chapter.course_id
-LEFT JOIN tbl_lesson AS lesson ON chapter.id = lesson.chapter_id
-WHERE course.id = 1;
-
-SELECT * FROM tbl_course where tbl_course.id = 2;
-```
-
-
