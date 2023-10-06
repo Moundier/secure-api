@@ -37,7 +37,7 @@ public class Chapter {
     private Set<Course> courses;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "tbl_course_chapter",
+    @JoinTable(name = "tbl_chapter_lesson",
         joinColumns = {
             @JoinColumn(name = "course_id", referencedColumnName = "id")
         }, 

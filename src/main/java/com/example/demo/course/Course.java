@@ -47,5 +47,4 @@ public class Course {
         }
     )
     private Set<Chapter> chapters;
-
 }

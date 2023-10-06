@@ -23,7 +23,6 @@ public class CourseService {
     public List<Course> findAll() {
         return courseRepo.findAll();
     }
-    
 
     public Course edit(Integer id, Course course) {
         var older = courseRepo.findById(id).orElseThrow(() -> notFound404());
