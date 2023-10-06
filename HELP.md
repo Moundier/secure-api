@@ -38,13 +38,61 @@ Future
 - [ ] Dockerfile Dockercompose
 - [ ] Link Users to Courses
 - [ ] Prepare each Postman Request
-    * User -> Access Course
-    * User -> Access Chapter
-    * User -> Access Lesson
-    * Admin -> Create Complete Course
+    * [x] User -> Access Course
+    * [ ] User -> Access Course Lesson -> Return clicked lesson by id
+    * [x] Admin -> Create Complete Course
 
-- [ ] Only Admin can Modify Course aspects
+- [ ] Only Admin can {Sew} Course aspects
 - [ ] Add Spring Validation Annotations
 
 
+## Hyperlink
+
+https://app.gleek.io
+
 ```json
+// Connect shapes together using different connection types
+User {1}--{0..n} Course
+Course {1}--{1..n} Chapter
+Chapter {1}--{1..n} Lesson
+
+
+Course
+	int id
+	string imageURL
+	string title
+	string details
+	Date duration
+	String level
+
+Chapter
+	int id
+	string title
+	string description
+
+Lesson
+	int id
+	string title
+	string description
+	boolean isLessonComplete
+	file lessonReadme
+
+User
+	int id
+	string firstname
+	string lastname
+	string email
+	string password
+	Role role
+
+
+>>>>>> SQL
+
+SELECT tbl_course.title, tbl_chapter.title, tbl_lesson.title
+FROM tbl_course
+LEFT JOIN tbl_course_chapter ON tbl_course.id = tbl_course_chapter.course_id
+LEFT JOIN tbl_chapter ON tbl_course_chapter.chapter_id = tbl_chapter.id
+LEFT JOIN tbl_chapter_lesson ON tbl_chapter.id = tbl_chapter_lesson.chapter_id
+LEFT JOIN tbl_lesson ON tbl_chapter_lesson.lesson_id = tbl_lesson.id
+WHERE tbl_course.id = 1;
+```
