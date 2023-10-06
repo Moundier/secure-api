@@ -11,6 +11,14 @@ spring:
     # url: jdbc:postgresql://silly.db.elephantsql.com:5432/tqcszcxm?user=tqcszcxm&password=SXgJrMstmZieuYMBUOLEdeAuY47wC1tC  # Elephant
     driver-class-name: org.postgresql.Driver
 
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baselineOnMigrate: true
+    validateOnMigrate: false # You can set this to true during development to validate migrations
+    schemas: public # The schema where your tables will be created
+    table: flyway_schema_history # Table to store migration history
+    
   jpa:
     hibernate:
       ddl-auto: create-drop
