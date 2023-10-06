@@ -35,7 +35,7 @@ Future
 
 ## Todo
 - [x] Crows foot Entity Model
-- [ ] Complete Course
+- [x] Complete Course
 - [ ] Edit Course Passing Chapters and Sections
 - [ ] Dockerfile Dockercompose
 - [ ] Link Users to Courses
@@ -97,4 +97,6 @@ LEFT JOIN tbl_chapter ON tbl_course_chapter.chapter_id = tbl_chapter.id
 LEFT JOIN tbl_chapter_lesson ON tbl_chapter.id = tbl_chapter_lesson.chapter_id
 LEFT JOIN tbl_lesson ON tbl_chapter_lesson.lesson_id = tbl_lesson.id
 WHERE tbl_course.id = 1;
+
+select * from tbl_course;
 ```

@@ -36,7 +36,7 @@ public class CourseService {
         Course course = courseRepo.findById(id).orElseThrow(() -> notFound404("Course"));
 
         // Create a CourseDTO and set its properties
-        CourseDTO courseDTO = CourseDTO.builder()
+        CourseDTO finalCourse = CourseDTO.builder()
                 .imageURL(course.getImageURL())
                 .title(course.getTitle())
                 .details(course.getDetails())
@@ -56,7 +56,7 @@ public class CourseService {
 
         for (Chapter chapter : chapters) {
             // Create a ChapterDTO and set its properties
-            ChapterDTO chapterDTO = ChapterDTO.builder()
+            ChapterDTO finalChapter = ChapterDTO.builder()
                     .title(chapter.getTitle())
                     .description(chapter.getDescription())
                     .lessons(new HashSet<>()) // Initialize the set of LessonDTOs
@@ -74,21 +74,21 @@ public class CourseService {
 
             for (Lesson lesson : lessons) {
                 // Create a LessonDTO and set its properties
-                LessonDTO lessonDTO = LessonDTO.builder()
+                LessonDTO finalLesson = LessonDTO.builder()
                         .title(lesson.getTitle())
                         .description(lesson.getDescription())
                         .isLessonComplete(lesson.getIsLessonComplete())
                         .lessonReadme(lesson.getLessonReadme())
                         .build();
                 // Add the LessonDTO to the ChapterDTO's set of lessons
-                chapterDTO.getLessons().add(lessonDTO);
+                finalChapter.getLessons().add(finalLesson);
             }
 
             // Add the ChapterDTO to the CourseDTO's set of chapters
-            courseDTO.getChapters().add(chapterDTO);
+            finalCourse.getChapters().add(finalChapter);
         }
 
-        return courseDTO;
+        return finalCourse;
     }
 
     @Data
