@@ -27,7 +27,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     
-    public ResponseEntity<?> register(RegisterDTO request) {
+    public ResponseEntity<?> signup(RegisterDTO request) {
         
         User alreadyUser = userRepo.findByEmail(request.email());
 

@@ -15,9 +15,9 @@ public class AuthRoute {
 
     private final AuthService authService;
     
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterDTO request) {
-        return authService.register(request);
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody RegisterDTO request) {
+        return authService.signup(request);
     }
 
     @PostMapping("/authenticate")
