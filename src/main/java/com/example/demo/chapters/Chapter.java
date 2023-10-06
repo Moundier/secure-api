@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,16 +34,17 @@ public class Chapter {
     private String title;
     private String description;
     
-    @ManyToMany(mappedBy = "chapters", fetch = FetchType.EAGER)
-    private Set<Course> courses;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "tbl_chapter_lesson",
         joinColumns = {
-            @JoinColumn(name = "course_id", referencedColumnName = "id")
+            @JoinColumn(name = "chapter_id", referencedColumnName = "id")
         }, 
         inverseJoinColumns = {
-            @JoinColumn(name = "chapter_id", referencedColumnName = "id")
+            @JoinColumn(name = "lesson_id", referencedColumnName = "id")
         }
     )
     private Set<Lesson> lessons;
