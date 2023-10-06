@@ -33,10 +33,10 @@ public class Chapter {
     private String title;
     private String description;
     
-    @ManyToMany(mappedBy = "chapters", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "chapters", fetch = FetchType.EAGER)
     private Set<Course> courses;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "tbl_chapter_lesson",
         joinColumns = {
             @JoinColumn(name = "course_id", referencedColumnName = "id")

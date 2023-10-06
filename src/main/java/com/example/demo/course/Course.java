@@ -37,7 +37,7 @@ public class Course {
     private Date duration;
     private String level;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "tbl_course_chapter",
         joinColumns = {
             @JoinColumn(name = "course_id", referencedColumnName = "id")
