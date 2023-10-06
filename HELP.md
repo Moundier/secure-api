@@ -34,6 +34,8 @@ Future
 - [ ] Implement Logout.
 
 ## Todo
+- [x] Crows foot Entity Model
+- [ ] Complete Course
 - [ ] Edit Course Passing Chapters and Sections
 - [ ] Dockerfile Dockercompose
 - [ ] Link Users to Courses
