@@ -7,6 +7,7 @@ import java.util.Set;
 import com.example.demo.chapters.Chapter;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +31,7 @@ public class Course {
     
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Integer id;
     private String imageURL;
     private String title;
@@ -37,7 +39,7 @@ public class Course {
     private Date duration;
     private String level;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tbl_course_chapter",
         joinColumns = {
             @JoinColumn(name = "course_id", referencedColumnName = "id")

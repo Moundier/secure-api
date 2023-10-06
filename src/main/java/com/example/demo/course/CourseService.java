@@ -1,9 +1,20 @@
 package com.example.demo.course;
 
+import java.io.File;
+import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.chapters.Chapter;
+import com.example.demo.lesson.Lesson;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -17,19 +28,114 @@ public class CourseService {
     }
 
     public Course find(Integer id) {
-        return courseRepo.findById(id).orElseThrow(() -> notFound404());
+        return courseRepo.findById(id).orElseThrow(() -> notFound404("Single Course"));
     }
+
+    public CourseDTO findCompleteCourse(Integer id) {
+        // Retrieve the Course entity from the repository
+        Course course = courseRepo.findById(id).orElseThrow(() -> notFound404("Course"));
+    
+        
+        Set<Chapter> chapters = course.getChapters();
+
+        if (chapters == null) {
+            throw new RuntimeException("Chapter not found!");
+        }
+
+        // Create a CourseDTO and set its properties
+        CourseDTO courseDTO = CourseDTO.builder()
+                .imageURL(course.getImageURL())
+                .title(course.getTitle())
+                .details(course.getDetails())
+                .duration(course.getDuration())
+                .level(course.getLevel())
+                .chapters(new HashSet<>()) // Initialize the set of ChapterDTOs
+                .build();
+    
+        // Retrieve the chapters associated with the course
+
+        System.out.println(chapters);
+    
+        if (chapters != null) {
+            for (Chapter chapter : chapters) {
+                // Create a ChapterDTO and set its properties
+                ChapterDTO chapterDTO = ChapterDTO.builder()
+                        .title(chapter.getTitle())
+                        .description(chapter.getDescription())
+                        .lessons(new HashSet<>()) // Initialize the set of LessonDTOs
+                        .build();
+    
+                // Retrieve the lessons associated with the chapter
+                Set<Lesson> lessons = chapter.getLessons();
+                System.out.println(lessons);
+    
+                if (lessons != null) {
+                    for (Lesson lesson : lessons) {
+                        // Create a LessonDTO and set its properties
+                        LessonDTO lessonDTO = LessonDTO.builder()
+                                .title(lesson.getTitle())
+                                .description(lesson.getDescription())
+                                .isLessonComplete(lesson.getIsLessonComplete())
+                                .lessonReadme(lesson.getLessonReadme())
+                                .build();
+                        // Add the LessonDTO to the ChapterDTO's set of lessons
+                        chapterDTO.getLessons().add(lessonDTO);
+                    }
+                }
+    
+                // Add the ChapterDTO to the CourseDTO's set of chapters
+                courseDTO.getChapters().add(chapterDTO);
+            }
+        }
+    
+        return courseDTO;
+    }
+    
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CourseDTO {
+        private String imageURL;
+        private String title;
+        private String details;
+        private Date duration;
+        private String level;
+        private Set<ChapterDTO> chapters;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ChapterDTO {
+        private String title;
+        private String description;
+        private Set<LessonDTO> lessons;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LessonDTO {
+        private String title;
+        private String description;
+        private Boolean isLessonComplete;
+        private File lessonReadme;
+    }
+
 
     public List<Course> findAll() {
         return courseRepo.findAll();
     }
 
     public Course edit(Integer id, Course course) {
-        var older = courseRepo.findById(id).orElseThrow(() -> notFound404());
-        Course newer = null;
+        var older = courseRepo.findById(id).orElseThrow(() -> notFound404("Course"));
 
         if (older != null) {
-            newer = Course.builder()
+            older = Course.builder()
               .imageURL(course.getImageURL())
               .title(course.getTitle())
               .details(course.getDetails())
@@ -38,15 +144,15 @@ public class CourseService {
               .build();
         }
         
-        return courseRepo.save(newer);
+        return courseRepo.save(older);
     }
 
     public void wipe(Integer id) {
         courseRepo.deleteById(id);
     }
 
-    public RuntimeException notFound404() {
-        return new RuntimeException("Course was not found in database!");
+    public RuntimeException notFound404(String message) {
+        return new RuntimeException(message + " was not found in database!");
     }
 
 }

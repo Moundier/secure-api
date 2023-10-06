@@ -26,12 +26,12 @@ public class CourseRoute {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id) {
+    public ResponseEntity<?> find(@PathVariable("id") Integer id) {
 
-        Course course = courseService.find(id);
+        System.out.println(courseService.findCompleteCourse(id));
 
-        return (course != null) ? // Ternary Response
-            new ResponseEntity<>(courseService.find(id), HttpStatus.OK) :
+        return (id != null) ? // Ternary Response
+            new ResponseEntity<>(courseService.findCompleteCourse(id), HttpStatus.OK) :
             new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
