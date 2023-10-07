@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Data
 @Builder
@@ -33,10 +32,8 @@ public class User implements UserDetails {
     private String firstname;
     private String lastname;
 
-    @NonNull
     private String email;
     
-    @NonNull
     private String password;
 
     @Enumerated(EnumType.STRING)

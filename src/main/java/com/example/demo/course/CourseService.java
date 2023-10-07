@@ -129,21 +129,25 @@ public class CourseService {
         return courseRepo.findAll();
     }
 
-    public Course edit(Integer id, Course course) {
+    public Course edit(Integer id, Course newer) {
         
+        // We dont pass the id
         var older = courseRepo.findById(id).orElseThrow(() -> notFound404("Course"));
 
         if (older != null) {
             older = Course.builder()
-                    .imageURL(course.getImageURL())
-                    .title(course.getTitle())
-                    .details(course.getDetails())
-                    .duration(course.getDuration())
-                    .level(course.getLevel())
-                    .build();
+                .id(older.getId())
+                .imageURL(newer.getImageURL())
+                .title(newer.getTitle())
+                .details(newer.getDetails())
+                .duration(newer.getDuration())
+                .level(newer.getLevel())
+                .build();
+        
+            return courseRepo.save(older);
         }
 
-        return courseRepo.save(older);
+        return null;
     }
 
     public void wipe(Integer id) {

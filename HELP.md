@@ -34,19 +34,21 @@ Future
 - [ ] Implement Logout.
 
 ## Todo
-- [x] Crows foot Entity Model
-- [x] Complete Course
 - [ ] Edit Course Passing Chapters and Sections
 - [ ] Dockerfile Dockercompose
+- [ ] Only Admin can {Sew} Course aspects
+- [ ] Add Spring Validation Annotations
+- [/] (Low Priority) Edit User by roles get null
+
 - [ ] Link Users to Courses
+* Link users to courses
+* users that are admins can Sew
+* normal users can only see
+
 - [ ] Prepare each Postman Request
     * [x] User -> Access Course
     * [ ] User -> Access Course Lesson -> Return clicked lesson by id
     * [x] Admin -> Create Complete Course
-
-- [ ] Only Admin can {Sew} Course aspects
-- [ ] Add Spring Validation Annotations
-
 
 ## Hyperlink
 

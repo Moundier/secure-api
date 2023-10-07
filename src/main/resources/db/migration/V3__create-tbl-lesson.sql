@@ -1,4 +1,5 @@
-CREATE TABLE tbl_lesson (
+-- V3__create-tbl-lesson.sql
+CREATE TABLE IF NOT EXISTS tbl_lesson (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
     description TEXT,

@@ -1,4 +1,4 @@
-CREATE TABLE tbl_course (
+CREATE TABLE IF NOT EXISTS tbl_course (
     id SERIAL PRIMARY KEY,
     imageURL VARCHAR(255),
     title VARCHAR(255),
