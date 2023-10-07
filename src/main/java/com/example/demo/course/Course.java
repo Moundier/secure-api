@@ -35,6 +35,7 @@ public class Course {
     private Integer id;
     private String imageURL;
     private String title;
+    private String slug;
     private String details;
     private Date duration;
     private String level;
@@ -49,4 +50,12 @@ public class Course {
         }
     )
     private Set<Chapter> chapters;
+
+    public void createSlug() {
+        // Create the slug
+        if (title != null) 
+            slug = title
+                .toLowerCase()
+                .replaceAll(" ", "-"); 
+    }
 }

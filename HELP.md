@@ -36,7 +36,6 @@ Future
 ## Todo
 - [ ] Edit Course Passing Chapters and Sections
 - [ ] Dockerfile Dockercompose
-- [ ] Only Admin can {Sew} Course aspects
 - [ ] Add Spring Validation Annotations
 - [/] (Low Priority) Edit User by roles get null
 
@@ -45,10 +44,13 @@ Future
 * users that are admins can Sew
 * normal users can only see
 
-- [ ] Prepare each Postman Request
-    * [x] User -> Access Course
-    * [ ] User -> Access Course Lesson -> Return clicked lesson by id
-    * [x] Admin -> Create Complete Course
+- [] if Access course as admin, course reference to user is equal to course id, then can Sew
+- [] if Access course as admin, but reference differente, cannot Sew
+
+- Not so okay
+Edit Course
+Find only course aspects and not its children 
+at saving, we can add another column to the 
 
 ## Hyperlink
 

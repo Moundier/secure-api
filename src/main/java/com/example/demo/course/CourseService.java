@@ -24,6 +24,7 @@ public class CourseService {
     private final CourseRepo courseRepo;
 
     public Course save(Course course) {
+        course.createSlug();
         return courseRepo.save(course);
     }
 
@@ -90,6 +91,11 @@ public class CourseService {
 
         return finalCourse;
     }
+
+    public Course findBySlug(String slug) {
+        // Find by Slug can imitate the findCompleteCourse to retrun in the correct order
+        return courseRepo.findBySlug(slug);
+    } 
 
     @Data
     @Builder

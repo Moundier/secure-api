@@ -43,8 +43,18 @@ public class SecurityConfig {
 
             // Can POST 
             .requestMatchers(HttpMethod.POST ,"/auth/**").permitAll()
-            // Can POST ROLE_ADMIN
+            // Course POST by ROLE_ADMIN
             .requestMatchers(HttpMethod.POST, "/course/**").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.PUT, "/course/**").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.DELETE, "/course/**").hasAuthority("ADMIN")
+            // Chapter POST by ROLE_ADMIN
+            .requestMatchers(HttpMethod.POST, "/chapter/**").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.PUT, "/chapter/**").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.DELETE, "/chapter/**").hasAuthority("ADMIN")
+            // Lesson POST by ROLE_ADMIN
+            .requestMatchers(HttpMethod.POST, "/lesson/**").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.PUT, "/lesson/**").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.DELETE, "/lesson/**").hasAuthority("ADMIN")
             // Only authenticated (ROLE_USER, ROLE_ADMIN)
             .anyRequest().authenticated()
         )
