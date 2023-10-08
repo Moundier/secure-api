@@ -23,8 +23,42 @@ public class CourseService {
 
     private final CourseRepo courseRepo;
 
+    // Course save can be refactored to courseRepo.save() with no losses
     public Course save(Course course) {
+        
+        Course newerCourse = Course.builder()
+            .imageURL(course.getImageURL())
+            .title(course.getTitle())
+            .details(course.getDetails())
+            .duration(course.getDuration())
+            .level(course.getLevel())
+            .chapters(new HashSet<>())
+            .build();
+
         course.createSlug();
+
+        for (Chapter chapter : course.getChapters()) {
+            
+            Chapter newerChapter = Chapter.builder()
+                .title(chapter.getTitle())
+                .description(chapter.getDescription())
+                .lessons(new HashSet<>())
+                .build();
+
+                for (Lesson lesson : chapter.getLessons()) {
+                    Lesson newerLesson = Lesson.builder()
+                    .title(lesson.getTitle())
+                    .description(lesson.getDescription())
+                    .isLessonComplete(lesson.getIsLessonComplete())
+                    .lessonReadme(lesson.getLessonReadme())
+                    .build();
+
+                    newerChapter.getLessons().add(newerLesson);
+                }
+
+            newerCourse.getChapters().add(newerChapter);
+        }
+        
         return courseRepo.save(course);
     }
 
@@ -92,11 +126,6 @@ public class CourseService {
         return finalCourse;
     }
 
-    public Course findBySlug(String slug) {
-        // Find by Slug can imitate the findCompleteCourse to retrun in the correct order
-        return courseRepo.findBySlug(slug);
-    } 
-
     @Data
     @Builder
     @NoArgsConstructor
@@ -133,6 +162,10 @@ public class CourseService {
 
     public List<Course> findAll() {
         return courseRepo.findAll();
+    }
+
+    public Course findBySlug(String slug) {
+        return courseRepo.findBySlug(slug);
     }
 
     public Course edit(Integer id, Course course) {

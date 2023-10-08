@@ -25,7 +25,7 @@ public class CourseRoute {
         return ResponseEntity.status(HttpStatus.CREATED).body(courseService.save(course));
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<?> find(@PathVariable("id") Integer id) {
 
         System.out.println(courseService.findCompleteCourse(id));
@@ -35,8 +35,9 @@ public class CourseRoute {
             new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<?> findBySlug(String title) {
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.findBySlug(title));
+    @GetMapping("/{slug}")
+    public ResponseEntity<?> findBySlug(@PathVariable String slug) {
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.findBySlug(slug));
     }
 
     @GetMapping
