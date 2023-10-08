@@ -2,7 +2,6 @@ package com.example.demo.chapters;
 
 import java.util.Set;
 
-import com.example.demo.course.Course;
 import com.example.demo.lesson.Lesson;
 
 import jakarta.persistence.CascadeType;
@@ -12,7 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,10 +31,7 @@ public class Chapter {
     private Integer id;
     private String title;
     private String description;
-    
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "tbl_chapter_lesson",
