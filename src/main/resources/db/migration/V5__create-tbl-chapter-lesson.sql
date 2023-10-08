@@ -1,5 +1,4 @@
--- V5__create-tbl-chapter-lesson.sql
-CREATE TABLE IF NOT EXISTS tbl_chapter_lesson (
+CREATE TABLE tbl_chapter_lesson (
     chapter_id INTEGER,
     lesson_id INTEGER,
     PRIMARY KEY (chapter_id, lesson_id),

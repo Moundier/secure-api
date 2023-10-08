@@ -60,7 +60,7 @@ public class AuthService {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorDTO(message));
         }
 
-        // Email found and posses Password 
+        // Get User Authenticated
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 request.email(),

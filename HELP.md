@@ -29,28 +29,15 @@ The following guides illustrate how to use some features concretely:
 - [x] Implement Security authentication and authorization.
 - [x] Implement Jwt Bearer.
 
-Future
+## Future
 - [ ] Implement Jwt Refresh Token.
 - [ ] Implement Logout.
 
 ## Todo
-- [ ] Edit Course Passing Chapters and Sections
 - [ ] Dockerfile Dockercompose
-- [ ] Add Spring Validation Annotations
-- [/] (Low Priority) Edit User by roles get null
-
 - [ ] Link Users to Courses
-* Link users to courses
-* users that are admins can Sew
-* normal users can only see
-
-- [] if Access course as admin, course reference to user is equal to course id, then can Sew
-- [] if Access course as admin, but reference differente, cannot Sew
-
-- Not so okay
-Edit Course
-Find only course aspects and not its children 
-at saving, we can add another column to the 
+- [ ] Prepare each Postman Request
+- [ ] Add Spring Validation Annotations
 
 ## Hyperlink
 

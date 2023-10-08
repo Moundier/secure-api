@@ -26,7 +26,7 @@ public class CourseRoute {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id) {
+    public ResponseEntity<?> find(@PathVariable("id") Integer id) {
 
         System.out.println(courseService.findCompleteCourse(id));
 

@@ -44,11 +44,10 @@ public class AuthFilter extends OncePerRequestFilter {
 
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        // Email exists && isUserAuthenticated
-
-        if (userEmail != null &&  auth== null) {
+        if (userEmail != null && auth == null) {
 
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 

@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthConfig {
     
-    /* Beans instantiated by Spring */
-
+    // Beans managed by Spring
+    
     private final UserRepo userRepo;
 
     @Bean
