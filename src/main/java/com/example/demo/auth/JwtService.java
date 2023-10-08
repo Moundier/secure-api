@@ -10,10 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 
 @Service
 public class JwtService extends JwtContract {
@@ -38,8 +40,8 @@ public class JwtService extends JwtContract {
 				.signWith(getSignInKey(), SignatureAlgorithm.HS256)
 				.compact();
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SignatureException | ExpiredJwtException e) {
+			e.toString();
 			return null;
 		}
 	}
