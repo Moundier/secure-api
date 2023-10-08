@@ -91,6 +91,5 @@ public class LessonService {
         lessonRepo.deleteById(lessonId);
 
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-
     }
 }
