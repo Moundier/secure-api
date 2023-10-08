@@ -29,13 +29,18 @@ public class LessonRoute {
         return lessonService.edit(id, lesson);
     }
 
-    @GetMapping("/{title}")
-    public ResponseEntity<?> findLessonBySmug(@PathVariable String title, Lesson lesson) {
-        return null;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> find(@PathVariable Integer id){
+        return lessonService.find(id);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> wipe(@PathVariable Integer id) {
-        return lessonService.wipe(id);
+    // @GetMapping("/{title}")
+    // public ResponseEntity<?> findLessonBySmug(@PathVariable String title, Lesson lesson) {
+    //     return null;
+    // }
+
+    @DeleteMapping("/{chapterId}/{lessonId}")
+    public ResponseEntity<?> wipe(@PathVariable Integer chapterId, @PathVariable Integer lessonId) {
+        return lessonService.wipe(chapterId, lessonId);
     }
 }

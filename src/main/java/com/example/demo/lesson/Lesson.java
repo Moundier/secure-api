@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.example.demo.chapters.Chapter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,5 +35,6 @@ public class Lesson {
 
     @ManyToOne
     @JoinColumn(name = "chapter_id") // Many lessons belong to one chapter
+    @JsonIgnore
     private Chapter chapter;
 }
