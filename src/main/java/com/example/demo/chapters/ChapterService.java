@@ -1,6 +1,7 @@
 package com.example.demo.chapters;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.course.Course;
 import com.example.demo.course.CourseRepo;
 import com.example.demo.lesson.Lesson;
+import com.example.demo.lesson.LessonRepo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +20,7 @@ public class ChapterService {
     
     private final CourseRepo courseRepo;
     private final ChapterRepo chapterRepo;
+    private final LessonRepo lessonRepo;
 
     public ResponseEntity<?> save(Integer id, Chapter newer) {
         
@@ -40,30 +43,33 @@ public class ChapterService {
     }
 
     public ResponseEntity<?> edit(Integer chapterId, Chapter newer) {
-        
+
         if (chapterId == null || newer == null) {
             return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body("Invalid chapterId or updated Chapter");
         }
     
-        Chapter older = chapterRepo.findById(chapterId).orElseThrow(() -> new RuntimeException("Chapter not found with ID: " + chapterId));
+        Chapter older = chapterRepo.findById(chapterId)
+            .orElseThrow(() -> new RuntimeException("Chapter not found with ID: " + chapterId));
     
-        // Clear the existing lessons associated with the chapter
-        older.getLessons().clear();
-
-        // Update the properties of the older chapter with the values from the newer chapter
-        older.setTitle(newer.getTitle());
-        older.setDescription(newer.getDescription());
-
-        // Save the chapter with updated properties
-        Chapter savedChapter = chapterRepo.save(older);
-
-        // Delete the lessons associated with the chapter
-        for (Lesson lesson : newer.getLessons()) {
-            older.getLessons().add(lesson);
+        Set<Lesson> lessonsToDelete = new HashSet<>(older.getLessons());
+    
+        for (Lesson lesson : lessonsToDelete) {
+            older.getLessons().remove(lesson);
+            lessonRepo.deleteById(lesson.getId());
         }
-
+    
+        // Use Lombok builder to construct an updated Chapter object
+        Chapter updatedChapter = Chapter.builder()
+            .id(older.getId()) // Set the ID if needed
+            .title(newer.getTitle())
+            .description(newer.getDescription())
+            .lessons(newer.getLessons())
+            .build();
+    
+        Chapter savedChapter = chapterRepo.save(updatedChapter);
+    
         return ResponseEntity.status(HttpStatus.OK).body(savedChapter);
     }
 
@@ -74,17 +80,17 @@ public class ChapterService {
                 .status(HttpStatus.BAD_REQUEST)
                 .body("Invalid courseId or chapterId");
 
+        // Its Needed beacuse of the mapping table, so we remove 
         Course course = courseRepo.findById(courseId).orElseThrow(() -> new RuntimeException("Lesson not found with ID: " + courseId));
         Chapter chapter = chapterRepo.findById(chapterId).orElseThrow(() -> new RuntimeException("Chapter not found with ID: " + chapterId));
         
         if (course != null && chapter != null) {
-            // It removes from the mapping table
             course.getChapters().remove(chapter);
             courseRepo.save(course);
         }
 
         chapterRepo.deleteById(chapterId);
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Chapter " + chapterId + " not found!");
+        return ResponseEntity.status(HttpStatus.OK).body("Chapter " + chapterId + " got deleted!");
     }
 }

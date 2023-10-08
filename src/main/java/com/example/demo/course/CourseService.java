@@ -6,10 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.chapters.Chapter;
+import com.example.demo.chapters.ChapterRepo;
 import com.example.demo.lesson.Lesson;
+import com.example.demo.lesson.LessonRepo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +26,8 @@ import lombok.RequiredArgsConstructor;
 public class CourseService {
 
     private final CourseRepo courseRepo;
+    private final ChapterRepo chapterRepo;
+    private final LessonRepo lessonRepo;
 
     // Course save can be refactored to courseRepo.save() with no losses
     public Course save(Course course) {
@@ -168,21 +174,44 @@ public class CourseService {
         return courseRepo.findBySlug(slug);
     }
 
-    public Course edit(Integer id, Course course) {
-        
-        var older = courseRepo.findById(id).orElseThrow(() -> notFound404("Course"));
+    public ResponseEntity<?> edit(Integer courseId, Course newer) {
 
-        if (older != null) {
-            older = Course.builder()
-                    .imageURL(course.getImageURL())
-                    .title(course.getTitle())
-                    .details(course.getDetails())
-                    .duration(course.getDuration())
-                    .level(course.getLevel())
-                    .build();
+        if (courseId == null || newer == null) {
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Invalid courseId or updated Course");
+        }
+    
+        Course older = courseRepo.findById(courseId)
+            .orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseId));
+    
+        Set<Chapter> chaptersTpoRemove = new HashSet<>(older.getChapters());
+        
+        for (Chapter chapter : chaptersTpoRemove) {
+            older.getChapters().remove(chapter);
+            chapterRepo.deleteById(chapter.getId());
+
+            Set<Lesson> lessonsToRemove = new HashSet<>(chapter.getLessons());   
+
+            for (Lesson lesson : lessonsToRemove) {
+                chapter.getLessons().remove(lesson);
+                lessonRepo.deleteById(lesson.getId());
+            }
         }
 
-        return courseRepo.save(older);
+        Course course = Course.builder()
+        .id(older.getId())
+        .imageURL(newer.getImageURL())
+        .title(newer.getTitle())
+        .details(newer.getDetails())
+        .duration(newer.getDuration())
+        .level(newer.getLevel())
+        .chapters(newer.getChapters())
+        .build();
+
+        course.createSlug();
+    
+        return ResponseEntity.status(HttpStatus.OK).body(courseRepo.save(course));
     }
 
     public void wipe(Integer id) {

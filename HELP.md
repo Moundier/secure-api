@@ -38,9 +38,9 @@ The following guides illustrate how to use some features concretely:
 - [ ] Link Users to Courses
 - [ ] Add Spring Validation Annotations
 - [ ] Change Chapter contruction to builder
-- [ ] re-check EACH GET Course and imorove the response
-- [ ] When editing chapters, lessons are not set
-- [ ] Edit and Delete Course
+- [ ] Chapter Delete doesnt work
+- [ ] Check lower
+- [ ] Re-Check All 
 
 ## Hyperlink
 

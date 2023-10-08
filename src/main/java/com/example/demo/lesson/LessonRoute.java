@@ -25,7 +25,7 @@ public class LessonRoute {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> edit(@PathVariable Integer id, Lesson lesson) {
+    public ResponseEntity<?> edit(@PathVariable Integer id, @RequestBody Lesson lesson) {
         return lessonService.edit(id, lesson);
     }
 
