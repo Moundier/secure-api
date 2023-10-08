@@ -37,10 +37,11 @@ The following guides illustrate how to use some features concretely:
 - [ ] Dockerfile Dockercompose
 - [ ] Link Users to Courses
 - [ ] Add Spring Validation Annotations
-- [ ] Change Chapter contruction to builder
-- [ ] Chapter Delete doesnt work
-- [ ] Check lower
-- [ ] Re-Check All 
+- [ ] Cant Create Chapter two times
+- [ ] Chapter Delete
+- [ ] Find Chapter retrurns null
+- [ ] Delete Lesson (some lessons cannot be deleted because they sill are referenced in the map table and some dont)
+		---> either chapterService or lessonService
 
 ## Hyperlink
 
