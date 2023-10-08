@@ -36,8 +36,11 @@ The following guides illustrate how to use some features concretely:
 ## Todo
 - [ ] Dockerfile Dockercompose
 - [ ] Link Users to Courses
-- [ ] Prepare each Postman Request
 - [ ] Add Spring Validation Annotations
+- [ ] Change Chapter contruction to builder
+- [ ] re-check EACH GET Course and imorove the response
+- [ ] When editing chapters, lessons are not set
+- [ ] Edit and Delete Course
 
 ## Hyperlink
 
