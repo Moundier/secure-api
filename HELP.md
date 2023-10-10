@@ -37,11 +37,24 @@ The following guides illustrate how to use some features concretely:
 - [ ] Dockerfile Dockercompose
 - [ ] Link Users to Courses
 - [ ] Add Spring Validation Annotations
-- [ ] Cant Create Chapter two times
-- [ ] Chapter Delete
-- [ ] Find Chapter retrurns null
-- [ ] Delete Lesson (some lessons cannot be deleted because they sill are referenced in the map table and some dont)
-		---> either chapterService or lessonService
+
+Course Requests Work! 
+
+// When Delete Lesson, pass only Lesson id, not Chapter and Lesson id, just lesson id
+
+```sql
+select * from tbl_course;
+select * from tbl_chapter;
+select * from tbl_lesson;
+select * from tbl_course_chapter;
+select * from tbl_chapter_lesson;
+```
+
+# Mvn and Docker
+- `mvn clean package where the .pom is contained`
+- `sudo docker build -t secure-api: latest .`
+- `sudo docker compose up -d --build`
+- mvn clean package -Pprod
 
 ## Hyperlink
 
@@ -95,3 +108,4 @@ WHERE tbl_course.id = 1;
 
 select * from tbl_course;
 ```
+
