@@ -38,9 +38,8 @@ The following guides illustrate how to use some features concretely:
 - [ ] Link Users to Courses
 - [ ] Add Spring Validation Annotations
 
-Course Requests Work! 
-
 // When Delete Lesson, pass only Lesson id, not Chapter and Lesson id, just lesson id
+// Create Crow Foot Entity Model 
 
 ```sql
 select * from tbl_course;
@@ -54,7 +53,6 @@ select * from tbl_chapter_lesson;
 - `mvn clean package where the .pom is contained`
 - `sudo docker build -t secure-api: latest .`
 - `sudo docker compose up -d --build`
-- mvn clean package -Pprod
 
 ## Hyperlink
 
