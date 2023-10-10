@@ -40,6 +40,7 @@ The following guides illustrate how to use some features concretely:
 
 // When Delete Lesson, pass only Lesson id, not Chapter and Lesson id, just lesson id
 // Create Crow Foot Entity Model 
+// Make Docker Work
 
 ```sql
 select * from tbl_course;
