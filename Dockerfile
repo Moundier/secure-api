@@ -7,8 +7,6 @@ WORKDIR /app
 # Copy the JAR file (Spring Boot application) into the container
 COPY target/demo-0.0.1-SNAPSHOT.jar /app/ 
 
-# mvn clean package
-
 # Expose the port your Spring Boot application is running on (default is 8080)
 EXPOSE 8080
 
