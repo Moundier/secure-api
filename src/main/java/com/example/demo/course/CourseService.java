@@ -166,7 +166,16 @@ public class CourseService {
         private File lessonReadme;
     }
 
+    public record OnlyCourseDto(
+        String image,
+        String titulo,
+        String details,
+        Date duration,
+        String level
+    ) { }
+
     public List<Course> findAll() {
+        // TODO: Return OnlyCourseDto 
         return courseRepo.findAll();
     }
 
@@ -185,9 +194,9 @@ public class CourseService {
         Course older = courseRepo.findById(courseId)
             .orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseId));
     
-        Set<Chapter> chaptersTpoRemove = new HashSet<>(older.getChapters());
+        Set<Chapter> chaptersToRemove = new HashSet<>(older.getChapters());
         
-        for (Chapter chapter : chaptersTpoRemove) {
+        for (Chapter chapter : chaptersToRemove) {
             older.getChapters().remove(chapter);
             chapterRepo.deleteById(chapter.getId());
 
