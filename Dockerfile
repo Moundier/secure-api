@@ -13,4 +13,4 @@ COPY target/demo-0.0.1-SNAPSHOT.jar /app/
 EXPOSE 8080
 
 # Command to run the Spring Boot application
-CMD ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar" , "--spring.profiles.active=prod"]
+CMD ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar"]
