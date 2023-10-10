@@ -34,10 +34,13 @@ public class ChapterService {
             .lessons(new HashSet<>())
             .build();
 
+        chapterRepo.save(chapter); // Set Next Course Id
+
         for (Lesson lesson : newer.getLessons()) {
               chapter.getLessons().add(lesson);  
         }
-        course.getChapters().add(chapter);        
+
+        // Save instead of adding to Set
 
         return ResponseEntity.status(HttpStatus.CREATED).body(courseRepo.save(course));
     }
