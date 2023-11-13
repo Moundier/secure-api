@@ -30,17 +30,22 @@ The following guides illustrate how to use some features concretely:
 - [x] Implement Jwt Bearer.
 
 ## Future
-- [ ] Implement Jwt Refresh Token.
+- [ ] Implement Refresh Token.
+- [ ] Implement RBAC 
 - [ ] Implement Logout.
+- [ ] Implement Validation Annotations
 
 ## Todo
-- [ ] Dockerfile Dockercompose
-- [ ] Link Users to Courses
-- [ ] Add Spring Validation Annotations
+- [ ] Persist some data placeholder
+- [ ] Change API Controllers paths
+- [ ] Make everything slug
+- [ ] Consume in frontend (via-visual)
+- [ ] Dockerfile & docker-compose
 
 // When Delete Lesson, pass only Lesson id, not Chapter and Lesson id, just lesson id
 // Create Crow Foot Entity Model 
 // Make Docker Work
+// Users subscribe to course or to other users like youtube?
 
 ```sql
 select * from tbl_course;
@@ -55,48 +60,12 @@ select * from tbl_chapter_lesson;
 - `sudo docker build -t secure-api: latest .`
 - `sudo docker compose up -d --build`
 
-## Hyperlink
 
-https://app.gleek.io
+### Important
+- In Login, we dont need to pass token. Login generates a token from valid credentials. 
+- 
 
-```json
-// Connect shapes together using different connection types
-User {1}--{0..n} Course
-Course {1}--{1..n} Chapter
-Chapter {1}--{1..n} Lesson
-
-
-Course
-	int id
-	string imageURL
-	string title
-	string details
-	Date duration
-	String level
-
-Chapter
-	int id
-	string title
-	string description
-
-Lesson
-	int id
-	string title
-	string description
-	boolean isLessonComplete
-	file lessonReadme
-
-User
-	int id
-	string firstname
-	string lastname
-	string email
-	string password
-	Role role
-
-
->>>>>> SQL
-
+```sql
 SELECT tbl_course.title, tbl_chapter.title, tbl_lesson.title
 FROM tbl_course
 LEFT JOIN tbl_course_chapter ON tbl_course.id = tbl_course_chapter.course_id
@@ -107,4 +76,3 @@ WHERE tbl_course.id = 1;
 
 select * from tbl_course;
 ```
-
