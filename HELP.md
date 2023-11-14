@@ -36,9 +36,12 @@ The following guides illustrate how to use some features concretely:
 - [ ] Implement Validation Annotations
 
 ## Todo
+
+- [ ] Dardo-san idea of slug
+- [ ] I missed creating get for chapter
+- [ ] GET data Course and all its Chapters plus first Lesson
 - [ ] Persist some data placeholder
 - [ ] Change API Controllers paths
-- [ ] Make everything slug
 - [ ] Consume in frontend (via-visual)
 - [ ] Dockerfile & docker-compose
 
