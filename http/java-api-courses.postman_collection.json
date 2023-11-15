@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "4cab7965-dabd-4385-9cf2-feeac0e0acd7",
+		"name": "java-api-courses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29900375"
+	},
+	"item": [
+		{
+			"name": "User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"ddd\",\n    \"lastname\": \"eee\",\n    \"email\": \"ddd@gmail.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9090/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZGRAZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY3ODgxMjYsImV4cCI6MTY5Njc4OTkyNn0.xI2779KRRQBjgkXanZuae3n0UmYoubxS5YObSKstvrE"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"LUPOS\",\n    \"lastname\": \"SOPUL\",\n    \"email\": \"lupos@gmail.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9090/user/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZGRAZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY3ODgxMjYsImV4cCI6MTY5Njc4OTkyNn0.xI2779KRRQBjgkXanZuae3n0UmYoubxS5YObSKstvrE"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:9090/user/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": ""
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"adm@gmail.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9090/auth/authenticate"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\": \"adm\",\n    \"lastname\": \"admin\",\n    \"email\": \"adm@gmail.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9090/auth/authorize"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Course",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5NjU5NjQsImV4cCI6MTY5Njk2Nzc2NH0.ba2kYHaz2jln2rHsT71CU56njJnvYRH4UZf77PWfEsA"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \n    \"id\": null,\n    \"imageURL\": \"Course Image URL\",\n    \"title\": \"Java for Buumers\",\n    \"details\": \"Course Details\",\n    \"duration\": \"2023-10-10\",\n    \"level\": \"Course Level\",\n    \"chapters\": [\n      {\n        \"id\": null,\n        \"title\": \"Chapter 1\",\n        \"description\": \"Chapter 1 Description\",\n        \"lessons\": [\n          {\n            \"id\": null,\n            \"title\": \"Lesson 1.1\",\n            \"description\": \"Lesson 1.1 Description\",\n            \"isLessonComplete\": true,\n            \"lessonReadme\": \"Lesson 1.1 Readme\"\n          },\n          {\n            \"id\": null,\n            \"title\": \"Lesson 1.2\",\n            \"description\": \"Lesson 1.2 Description\",\n            \"isLessonComplete\": false,\n            \"lessonReadme\": \"Lesson 1.2 Readme\"\n          }\n        ]\n      },\n      {\n        \"id\": null,\n        \"title\": \"Chapter 2\",\n        \"description\": \"Chapter 2 Description\",\n        \"lessons\": [\n          {\n            \"id\": null,\n            \"title\": \"Lesson 2.1\",\n            \"description\": \"Lesson 2.1 Description\",\n            \"isLessonComplete\": true,\n            \"lessonReadme\": \"Lesson 2.1 Readme\"\n          },\n          {\n            \"id\": null,\n            \"title\": \"Lesson 2.2\",\n            \"description\": \"Lesson 2.2 Description\",\n            \"isLessonComplete\": false,\n            \"lessonReadme\": \"Lesson 2.2 Readme\"\n          }\n        ]\n      }\n    ]\n  \n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:9090/course/save"
+			},
+			"response": []
+		},
+		{
+			"name": "Find Course By Slug",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5MTM1MzIsImV4cCI6MTY5NjkxNTMzMn0.WM6DLLrLUoxCRTl4CAhlH_CZNVsHUJc3tYxZ4nP9B4c"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9090/course/the-c-mother-language"
+			},
+			"response": []
+		},
+		{
+			"name": "Find Course",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5NjU5NjQsImV4cCI6MTY5Njk2Nzc2NH0.ba2kYHaz2jln2rHsT71CU56njJnvYRH4UZf77PWfEsA"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9090/course/find/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Find All Course",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5MTM1MzIsImV4cCI6MTY5NjkxNTMzMn0.WM6DLLrLUoxCRTl4CAhlH_CZNVsHUJc3tYxZ4nP9B4c"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "localhost:9090/course"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Course",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5NjU5NjQsImV4cCI6MTY5Njk2Nzc2NH0.ba2kYHaz2jln2rHsT71CU56njJnvYRH4UZf77PWfEsA"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \n    \"id\": null,\n    \"imageURL\": \"Edited Course\",\n    \"title\": \"Java for Dummies\",\n    \"details\": \"Edited Details Course\",\n    \"duration\": \"2023-10-10\",\n    \"level\": \"Course Level\",\n    \"chapters\": [\n      {\n        \"id\": null,\n        \"title\": \"Chapter 1 Edited from Course\",\n        \"description\": \"Chapter 1 Edited \",\n        \"lessons\": [\n          {\n            \"id\": null,\n            \"title\": \"Edited Lesson 1.1 Title\",\n            \"description\": \"Edited Lesson 1.1 Description\",\n            \"isLessonComplete\": true,\n            \"lessonReadme\": \"Edited Lesson 1.1 Readme\"\n          },\n          {\n            \"id\": null,\n            \"title\": \"Edited Lesson 1.2\",\n            \"description\": \"Edited Lesson 1.2 Description\",\n            \"isLessonComplete\": false,\n            \"lessonReadme\": \"Edited Lesson 1.2\"\n          }\n        ]\n      },\n      {\n        \"id\": null,\n        \"title\": \"Chapter 2 Edited from Course\",\n        \"description\": \"Chapter 2 Edited\",\n        \"lessons\": [\n          {\n            \"id\": null,\n            \"title\": \"Edited Lesson 1 Title\",\n            \"description\": \"Edited Lesson 1 Description\",\n            \"isLessonComplete\": true,\n            \"lessonReadme\": \"Edited Lesson 2.1 Readme\"\n          },\n          {\n            \"id\": null,\n            \"title\": \"Edited Lesson 2 Title\",\n            \"description\": \"Edited Lesson 2 Description\",\n            \"isLessonComplete\": false,\n            \"lessonReadme\": \"Edited Lesson 2.2 Readme\"\n          }\n        ]\n      }\n    ]\n  \n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:9090/course/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Course",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5NjU5NjQsImV4cCI6MTY5Njk2Nzc2NH0.ba2kYHaz2jln2rHsT71CU56njJnvYRH4UZf77PWfEsA"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:9090/course/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Chapter Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5NjU5NjQsImV4cCI6MTY5Njk2Nzc2NH0.ba2kYHaz2jln2rHsT71CU56njJnvYRH4UZf77PWfEsA"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"title\": \"new Chapter\",\n    \"description\": \"new Chapter Description\",\n    \"lessons\": [\n    {\n        \"id\": null,\n        \"title\": \"new Lesson 1.1\",\n        \"description\": \"new Lesson 1.1 Description\",\n        \"isLessonComplete\": true,\n        \"lessonReadme\": \"new Lesson 1.1 Readme\"\n    },\n    {\n        \"id\": null,\n        \"title\": \"new Lesson 1.2\",\n        \"description\": \"new Lesson 1.2 Description\",\n        \"isLessonComplete\": false,\n        \"lessonReadme\": \"new Lesson 1.2 Readme\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:9090/chapter/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Chapter Edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5MTU5MzMsImV4cCI6MTY5NjkxNzczM30.gwKS60M7xHJQcJvOzCgDVRC85-bR2RoNk3bsWpYTu8g"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"title\": \"AAAAAAAAAAAAAA\",\n    \"description\": \"AAAAAAAAAAAAAA\",\n    \"lessons\": [\n    {\n        \"id\": null,\n        \"title\": \"AAAAAAAAAAAAAA\",\n        \"description\": \"AAAAAAAAAAAAAA\",\n        \"isLessonComplete\": true,\n        \"lessonReadme\": \"AAAAAAAAAAAAAA\"\n    },\n    {\n        \"id\": null,\n        \"title\": \"AAAAAAAAAAAAAA\",\n        \"description\": \"AAAAAAAAAAAAAA\",\n        \"isLessonComplete\": false,\n        \"lessonReadme\": \"AAAAAAAAAAAAAA\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:9090/chapter/7"
+			},
+			"response": []
+		},
+		{
+			"name": "Chapter Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5MTU5MzMsImV4cCI6MTY5NjkxNzczM30.gwKS60M7xHJQcJvOzCgDVRC85-bR2RoNk3bsWpYTu8g"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:9090/chapter/2/7"
+			},
+			"response": []
+		},
+		{
+			"name": "Lesson Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5MTU5MzMsImV4cCI6MTY5NjkxNzczM30.gwKS60M7xHJQcJvOzCgDVRC85-bR2RoNk3bsWpYTu8g"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Sample Lesson Title\",\n  \"description\": \"Sample Lesson Description\",\n  \"isLessonComplete\": true,\n  \"lessonReadme\": \"/path/to/lesson/readme.txt\"  \n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9090/lesson/2/6"
+			},
+			"response": []
+		},
+		{
+			"name": "Lesson Find",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5MTU5MzMsImV4cCI6MTY5NjkxNzczM30.gwKS60M7xHJQcJvOzCgDVRC85-bR2RoNk3bsWpYTu8g"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9090/lesson/17"
+			},
+			"response": []
+		},
+		{
+			"name": "Lesson Edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5MTU5MzMsImV4cCI6MTY5NjkxNzczM30.gwKS60M7xHJQcJvOzCgDVRC85-bR2RoNk3bsWpYTu8g"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"KKKKK\",\n  \"description\": \"KKKKK\",\n  \"isLessonComplete\": true,\n  \"lessonReadme\": \"/path/to/lesson/KKKKK.txt\"  \n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9090/lesson/10"
+			},
+			"response": []
+		},
+		{
+			"name": "Lesson Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1AZ21haWwuY29tIiwiaXNzIjoibG9jYWxob3N0OjkwOTAiLCJpYXQiOjE2OTY5NjU5NjQsImV4cCI6MTY5Njk2Nzc2NH0.ba2kYHaz2jln2rHsT71CU56njJnvYRH4UZf77PWfEsA"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "localhost:9090/lesson/1/2"
+			},
+			"response": []
+		}
+	]
+}
