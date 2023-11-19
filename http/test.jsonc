@@ -1,0 +1,55 @@
+{
+  
+  "imageURL": "Course Image URL",
+  "title": "SQLs",
+  "details": "Course Details",
+  "duration": "2023-10-10",
+
+  "level": "Course Level", // enum
+  "slug_hash": "", // add later
+  "chapters": [
+    {
+      "id": null,
+      "title": "Chapter 1",
+      "description": "Chapter 1 Description",
+      "lessons": [
+        {
+          "id": null,
+          "title": "Lesson 1.1",
+          "description": "Lesson 1.1 Description",
+          "isLessonComplete": true,
+          "lessonReadme": "Lesson 1.1 Readme"
+        },
+        {
+          "id": null,
+          "title": "Lesson 1.2",
+          "description": "Lesson 1.2 Description",
+          "isLessonComplete": false,
+          "lessonReadme": "Lesson 1.2 Readme"
+        }
+      ]
+    },
+    {
+      "id": null,
+      "title": "Chapter 2",
+      "description": "Chapter 2 Description",
+      "lessons": [
+        {
+          "id": null,
+          "title": "Lesson 2.1",
+          "description": "Lesson 2.1 Description",
+          "isLessonComplete": true,
+          "lessonReadme": "Lesson 2.1 Readme"
+        },
+        {
+          "id": null,
+          "title": "Lesson 2.2",
+          "description": "Lesson 2.2 Description",
+          "isLessonComplete": false,
+          "lessonReadme": "Lesson 2.2 Readme"
+        }
+      ]
+    }
+  ]
+
+}
