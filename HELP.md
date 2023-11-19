@@ -36,14 +36,14 @@ The following guides illustrate how to use some features concretely:
 - [ ] Implement Validation Annotations
 
 ## Todo
-
+- add single column slugHash
+- [ ] Dockerfile & docker-compose
 - [ ] Dardo-san idea of slug
 - [ ] I missed creating get for chapter
 - [ ] GET data Course and all its Chapters plus first Lesson
 - [ ] Persist some data placeholder
 - [ ] Change API Controllers paths
 - [ ] Consume in frontend (via-visual)
-- [ ] Dockerfile & docker-compose
 
 // When Delete Lesson, pass only Lesson id, not Chapter and Lesson id, just lesson id
 // Create Crow Foot Entity Model 
